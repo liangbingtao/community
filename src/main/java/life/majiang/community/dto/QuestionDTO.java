@@ -15,5 +15,5 @@ public class QuestionDTO {
     private Integer viewCount;
     private Integer commentCount;
     private Integer likeCount;
-    private User user;
+    private User user;  //在question表中加入了user属性，构成了QuestionDTO
 }

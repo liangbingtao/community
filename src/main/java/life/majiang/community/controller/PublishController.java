@@ -45,7 +45,7 @@ public class PublishController {
             Model model){
 
 
-        /*将输入框中上次的值显示出来*/
+        /*将输入框中上次的写入的值显示出来*/
         model.addAttribute("title",title);
         model.addAttribute("description",description);
         model.addAttribute("tag",tag);
