@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
@@ -25,5 +28,16 @@ public class IndexController {
         PaginationDTO pagination = questionService.list(page,size);
         model.addAttribute("pagination",pagination);
         return "index";
+    }
+
+    //退出登录
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response) {
+        request.getSession().removeAttribute("user");   //移除session
+        Cookie cookie = new Cookie("token", null);  //要删除cookie需要新建一个同名的cookie，并将value设置为null
+        cookie.setMaxAge(0);    //立即删除型
+        response.addCookie(cookie);//删除cookie
+        return "redirect:/";
     }
 }
