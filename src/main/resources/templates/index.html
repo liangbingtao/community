@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>码匠社区</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/community.css">
@@ -51,6 +51,7 @@
                     <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}? 'active' : ''">
                         <a th:href="@{/(page=${page})}" th:text="${page}"></a>
                     </li>
+
                     <li th:if="${pagination.showNext}">
                         <a th:href="@{/(page=${pagination.page + 1})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>

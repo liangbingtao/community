@@ -17,21 +17,8 @@ public class PaginationDTO {
     private Integer totalPage;
 
 
-    public void setPagination(Integer totalCount, Integer page, Integer size) {
-        /* 计算总页数 */
-        if (totalCount % size == 0) {
-            totalPage = totalCount / size;
-        } else {
-            totalPage = totalCount / size + 1;
-        }
-
-        /* 容错处理*/
-        if (page < 1) {
-            page = 1;
-        }
-        if (page > totalPage) {
-            page = totalPage;
-        }
+    public void setPagination(Integer totalPage, Integer page) {
+        this.totalPage=totalPage;
         this.page = page; //将传进来的page赋值给类中的page
 
 
@@ -61,7 +48,7 @@ public class PaginationDTO {
         }
 
         /*是否展示第一页*/
-        if (pages.contains(1)) {
+          if (pages.contains(1)) {
             showFirstPage = false;  //如果当前分页列表包含第一页，则不显示跳转回第一页的按钮
         } else {
             showFirstPage = true;  //否则展示跳转到第一页的按钮

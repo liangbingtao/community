@@ -37,7 +37,7 @@ public class PublishController {
      * @return
      */
     @PostMapping("/publish")
-    public String duPublish(
+    public String doPublish(
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("tag") String tag,
