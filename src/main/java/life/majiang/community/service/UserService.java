@@ -22,7 +22,7 @@ public class UserService {
             dbuser.setGmtModified(System.currentTimeMillis());
             dbuser.setName(user.getName());
             dbuser.setToken(user.getToken());
-            user.setAvatarUrl(user.getAvatarUrl());
+            dbuser.setAvatarUrl(user.getAvatarUrl());
             userMapper.update(dbuser);
         }
 

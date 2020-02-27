@@ -26,6 +26,10 @@ body{
 .profile .section{
     margin-top: 15px;
 }
+.community-menu{
+    font-size: 13px;
+    color: #999;
+}
 
 .question-title{
     margin-top: 25px;
