@@ -44,7 +44,9 @@ public class QuestionService {
         if (page > totalPage) {
             page = totalPage;
         }
-
+        if (page == 0) {
+            page = 1;
+        }
         paginationDTO.setPagination(totalPage, page);//setPagination方法来计算页面的展示逻辑
         Integer offset = size * (page - 1); //偏移量和页码的关系
         List<Question> questions = questionMapper.list(offset, size);   //获得问题列表
@@ -96,12 +98,26 @@ public class QuestionService {
 
     }
 
+    /*问题详情页面*/
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.getById(id);
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
-        User user =userMapper.findById(question.getCreator());
+        User user = userMapper.findById(question.getCreator());
         questionDTO.setUser(user);
         return questionDTO;
+    }
+
+    public void createOrUpdate(Question question) {
+        if (question.getId() == null) {
+            //创建问题
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(question.getGmtCreate());
+            questionMapper.create(question);
+        }else {
+            //更新问题
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.update(question);
+        }
     }
 }

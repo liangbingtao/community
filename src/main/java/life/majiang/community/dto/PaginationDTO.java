@@ -16,11 +16,9 @@ public class PaginationDTO {
     private List<Integer> pages = new ArrayList<>();    //这个列表展示的是当前分页标签所包含的页码
     private Integer totalPage;
 
-
     public void setPagination(Integer totalPage, Integer page) {
-        this.totalPage=totalPage;
+        this.totalPage = totalPage;
         this.page = page; //将传进来的page赋值给类中的page
-
 
         /* 分页标签的展示逻辑 */
         pages.add(page);
@@ -48,7 +46,7 @@ public class PaginationDTO {
         }
 
         /*是否展示第一页*/
-          if (pages.contains(1)) {
+        if (pages.contains(1)) {
             showFirstPage = false;  //如果当前分页列表包含第一页，则不显示跳转回第一页的按钮
         } else {
             showFirstPage = true;  //否则展示跳转到第一页的按钮
