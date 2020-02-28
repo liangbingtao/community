@@ -123,9 +123,15 @@ public class QuestionService {
             //更新问题
             question.setGmtModified(System.currentTimeMillis());
             int updated = questionMapper.update(question);
-            if (updated != 1){//问题更新成功返回1,更新失败返回0；
+            if (updated != 1) {//问题更新成功返回1,更新失败返回0；
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = questionMapper.getById(id);
+        questionMapper.updateViewCount(question);
+
     }
 }
