@@ -4,23 +4,28 @@
 function post() {
     var questionId = $("#question_id").val();
     var content = $("#comment_content").val();
-    comment2target(questionId, 1, content);
-}
-
-function comment2target(targetId, type, content) {
+    // comment2target(questionId, 1, content);
     if (!content) {
         alert("不能回复空内容！");
         return;
     }
+
+
+// function comment2target(targetId, type, content) {
+//     if (!content) {
+//         alert("不能回复空内容！");
+//         return;
+//     }
 
     $.ajax({
         type: "POST",
         url: "/comment",
         contentType: 'application/json',
         data: JSON.stringify({      //JSON.stringify()方法可以将JavaScript对象转换为字符串
-            "parentId": targetId,
+            // "parentId": targetId,
+            "parentId": questionId,
             "content": content,
-            "type": type
+            "type": 1
         }),
         success: function (response) {
             if (response.code == 200) {
