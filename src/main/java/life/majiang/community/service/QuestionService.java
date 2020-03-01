@@ -134,6 +134,7 @@ public class QuestionService {
 
     public void incView(Long id) {
         Question question = questionMapper.getById(id);
+        question.setViewCount(1);
         questionMapper.updateViewCount(question);
 
     }
