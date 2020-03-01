@@ -27,6 +27,8 @@ body{
     margin-top: 15px;
 }
 .community-menu{
+    display: block;
+    margin-bottom: 15px;
     font-size: 13px;
     color: #999;
 }

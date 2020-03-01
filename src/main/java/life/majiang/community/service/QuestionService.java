@@ -65,7 +65,7 @@ public class QuestionService {
     }
 
     /*展示在profile中的问题列表*/
-    public PaginationDTO list(Integer userId, Integer page, Integer size) {
+    public PaginationDTO list(Long userId, Integer page, Integer size) {
         Integer totalPage;
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalCount = questionMapper.countByUserId(userId);    //计算出问题总数
@@ -101,7 +101,7 @@ public class QuestionService {
     }
 
     /*问题详情页面*/
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.getById(id);
         if (question == null) {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -118,6 +118,9 @@ public class QuestionService {
             //创建问题
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
+            question.setViewCount(0);
+            question.setCommentCount(0);
+            question.setLikeCount(0);
             questionMapper.create(question);
         } else {
             //更新问题
@@ -129,7 +132,7 @@ public class QuestionService {
         }
     }
 
-    public void incView(Integer id) {
+    public void incView(Long id) {
         Question question = questionMapper.getById(id);
         questionMapper.updateViewCount(question);
 
